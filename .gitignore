@@ -1,0 +1,8 @@
+# node_modules, too big to push
+node_modules
+
+# default coalition cache
+coalition-cache.json
+
+# config file, you're not getting my api token >:)
+config.json
