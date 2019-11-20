@@ -20,4 +20,4 @@ check `config-example.json` for an example.
 | client_secret | **String** REQUIRED            | Client secret from api page                                      |
 | cacheFile     | **String**                     | File to save the cache to. (defaults to `coalition-cache.json`)  |
 | campus        | **{id: String, name: String}** | The campus it filters on (defaults to `Codam`)                   |
-| projectList   | **String[]**                   | List of project slugs to list (defaults to only `42cursus-libt`) |
+| projectList   | **String[]**                   | List of project slugs to list (defaults to only `42cursus-libft`)|
