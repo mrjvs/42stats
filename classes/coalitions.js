@@ -1,11 +1,11 @@
 const fs = require('fs');
+const path = require('path');
 const Auth = require('./auth.js');
 const { cacheFile } = require('../config-defaults.js');
 
 class CoalitionCache {
-	constructor(cacheFile) {
+	constructor() {
 		this.users = {};
-		this.cacheFile = cacheFile;
 		this.loadCache();
 	}
 
@@ -36,15 +36,15 @@ class CoalitionCache {
 	}
 
 	saveCache() {
-		fs.writeFileSync(this.cacheFile, JSON.stringify({
+		fs.writeFileSync(path.join(__dirname, '../', cacheFile), JSON.stringify({
 			users: this.users,
 		}));
 	}
 
 	loadCache() {
-		if (fs.existsSync(cacheFile))
+		if (fs.existsSync(path.join(__dirname, '../', cacheFile)))
 		{
-			const fileContents = fs.readFileSync(this.cacheFile);
+			const fileContents = fs.readFileSync(path.join(__dirname, '../', cacheFile));
 			const data = JSON.parse(fileContents);
 			this.users = {
 				...this.users,
@@ -54,4 +54,4 @@ class CoalitionCache {
 	}
 }
 
-module.exports = new CoalitionCache(cacheFile);
+module.exports = new CoalitionCache();
