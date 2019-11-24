@@ -10,7 +10,7 @@ class Auth {
 		this.http = rateLimit( axios.create(), {
 			maxRequests: 1200,
 			perMilliseconds: 3600000,
-			maxRPS: 2,
+			maxRPS: 1,
 		});
 	}
 

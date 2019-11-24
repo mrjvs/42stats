@@ -6,8 +6,6 @@ module.exports = {
 		name: 'Codam',
 		id: '14',
 	},
-	projectList: [
-		'42cursus-libft',
-	],
+	cursus: '42cursus',
 	...Config,
 };

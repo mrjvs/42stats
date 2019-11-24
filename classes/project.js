@@ -56,12 +56,14 @@ class Project {
 			}
 			return false;
 		});
-		out.map((val) => {
+		out.sort((a, b) => {
+			return new Date(a.marked_at) - new Date(b.marked_at);
+		});
+		out.forEach((val) => {
 			count++;
 			while (val.user.login.length < maxlen) {
 				val.user.login += " ";
 			}
-			return val;
 		});
 		if (out.length === 0)
 			console.log(
@@ -76,6 +78,7 @@ class Project {
 			for (let i in out) {
 				let coalition = await Coalitions.getCoalitionFromUserId(out[i].user.id);
 				console.log(
+					chalk.gray(`${1 + +i}. `) + 
 					chalk.gray(`(${out[i].project.name})`) +
 					chalk.hex(coalition.color)(`[ ${out[i].user.login} ]`) +
 					' final mark: ' +
