@@ -77,8 +77,9 @@ class Project {
 		{
 			for (let i in out) {
 				let coalition = await Coalitions.getCoalitionFromUserId(out[i].user.id);
+				const num = 1 + +i;
 				console.log(
-					chalk.gray(`${1 + +i}. `) + 
+					chalk.gray(`${num < 10 ? "0" : ""}${num}. `) + 
 					chalk.gray(`(${out[i].project.name})`) +
 					chalk.hex(coalition.color)(`[ ${out[i].user.login} ]`) +
 					' final mark: ' +
