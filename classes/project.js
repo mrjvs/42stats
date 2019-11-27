@@ -42,8 +42,20 @@ class Project {
 		}
 		return output;
 	}
-	
-	async printProject() {
+
+	async getProject() {
+		const url = `https://api.intra.42.fr/v2/projects/${this.projectSlug}`
+        const response = await Auth.http({
+            method: 'get',
+            url,
+            headers: {
+                'Authorization': 'Bearer ' + Auth.getToken(),
+            }
+		});
+        return (response.data);
+	}
+
+	async printProjectUsers() {
 		let out = await this.getProjectUsers();
 		let maxlen = 0;
 		let count = 0;
@@ -92,6 +104,19 @@ class Project {
 				chalk.gray(count > 0 ? " people." : "person.")
 			);
 		}
+	}
+
+	async printProject() {
+		const project = await this.getProject();
+		const hasMoulinette = project.project_sessions[0].uploads.filter((val) => {
+			return (val.name === 'Moulinette');
+		}).length > 0;
+		console.log(
+			chalk.bold.white("Project ") +
+			chalk.bold.greenBright(project.name) +
+			chalk.gray(":\nMoulinette: ") +
+			chalk[(hasMoulinette ? 'redBright' : 'greenBright')](hasMoulinette ? 'Yes' : 'No') + "\n"
+		);
 	}
 }
 
