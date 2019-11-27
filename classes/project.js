@@ -92,7 +92,7 @@ class Project {
 				const num = 1 + +i;
 				console.log(
 					chalk.gray(`${num < 10 ? "0" : ""}${num}. `) + 
-					chalk.gray(`(${out[i].project.name})`) +
+					chalk.gray(`(${out[i].project.slug})`) +
 					chalk.hex(coalition.color)(`[ ${out[i].user.login} ]`) +
 					' final mark: ' +
 					chalk.green(out[i].final_mark)
@@ -113,7 +113,7 @@ class Project {
 		}).length > 0;
 		console.log(
 			chalk.bold.white("Project ") +
-			chalk.bold.greenBright(project.name) +
+			chalk.bold.greenBright(project.slug) +
 			chalk.gray(":\nMoulinette: ") +
 			chalk[(hasMoulinette ? 'redBright' : 'greenBright')](hasMoulinette ? 'Yes' : 'No') + "\n"
 		);
