@@ -20,6 +20,7 @@ async function start() {
 		{
 			let temp = new Project(campus, args.targets[1]);
 			await temp.printProject();
+			await temp.printProjectUsers();
 			return;
 		}
 	}

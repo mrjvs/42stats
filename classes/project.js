@@ -59,6 +59,7 @@ class Project {
 		let out = await this.getProjectUsers();
 		let maxlen = 0;
 		let count = 0;
+		let registeredCount = out.length;
 		out = out.filter((val) => {
 			if (val['validated?'] === true)
 			{
@@ -83,7 +84,9 @@ class Project {
 				chalk.white(this.projectSlug) +
 				chalk.redBright(" at ") +
 				chalk.white(this.campus.name) +
-				chalk.redBright("!")
+				chalk.redBright("!\n") +
+				chalk.white(registeredCount) +
+				chalk.redBright(" people registered!")
 			);
 		else
 		{
@@ -101,7 +104,9 @@ class Project {
 			console.log(
 				chalk.gray("Found ") +
 				chalk.white(count) +
-				chalk.gray(count > 0 ? " people." : "person.")
+				chalk.gray(count > 0 ? " people." : "person.") +
+				chalk.white("\n" + registeredCount) +
+				chalk.gray(" people registered.")
 			);
 		}
 	}
