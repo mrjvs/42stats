@@ -31,7 +31,16 @@ class CoalitionCache {
 				'Authorization': 'Bearer ' + Auth.getToken(),
 			}
 		});
-		this.saveCoalition(userId, res.data[0])
+		if (res.data.length === 0)
+		{
+			res.data[0] = {
+				id: 9999,
+				name: 'UNDEFINED',
+				color: '#FFFFFF',
+				user_id: userId
+			}
+		}
+		this.saveCoalition(userId, res.data[0]);
 		return res.data[0];
 	}
 
