@@ -113,14 +113,27 @@ class Project {
 
 	async printProject() {
 		const project = await this.getProject();
-		const hasMoulinette = project.project_sessions[0].uploads.filter((val) => {
+		let hasMoulinette = project.project_sessions[0].uploads.filter((val) => {
 			return (val.name === 'Moulinette');
 		}).length > 0;
+		const { cursus_id, campus_id, difficulty, scales } = project.project_sessions[0];
+		let examText = "";
+		if (!hasMoulinette &&
+			cursus_id === null &&
+			campus_id === null &&
+			difficulty === 0 &&
+			scales.length === 0)
+		{
+			hasMoulinette = true;
+			examText = chalk.gray("Exam: ") +
+			chalk[(hasMoulinette ? 'greenBright' : 'redBright')](hasMoulinette ? 'Yes' : 'No') + "\n"
+		}
 		console.log(
 			chalk.bold.white("Project ") +
 			chalk.bold.greenBright(project.slug) +
 			chalk.gray(":\nMoulinette: ") +
-			chalk[(hasMoulinette ? 'redBright' : 'greenBright')](hasMoulinette ? 'Yes' : 'No') + "\n"
+			chalk[(hasMoulinette ? 'redBright' : 'greenBright')](hasMoulinette ? 'Yes' : 'No') + "\n" +
+			examText
 		);
 	}
 }
